@@ -9,7 +9,6 @@ Vue.use(VueRouter)
 //   // mode: 'hash', // 哈希路由  带有#号
 //   // routes:
 // })
-// console.log(Store.state.menu)
 
 // 获取登录后的菜单信息
 export const menuList = [...menu]
