@@ -1,0 +1,48 @@
+name: main.yml
+# 触发脚本的条件，develop分支push代码的时候
+on:
+  push:
+    branches:
+      - main
+# 要执行的任务
+jobs:
+  # 任务名称
+  build:
+    # runs-on 指定job任务运行所需要的虚拟机环境（必填）
+    runs-on: ubuntu-latest
+    # 任务步骤
+    steps:
+      # 获取源码
+      - name: 迁出代码
+        # 使用action库  actions/checkout获取源码
+        uses: actions/checkout@main
+      # 安装node
+      - name: 安装node.js
+        # 使用action库 actions/setup-node 安装node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.18.4
+      # 安装依赖
+      - name: 安装依赖
+        run: npm install
+      # 打包
+      - name: 打包
+        run: npm run build
+      # 上传打包文件到远程服务器
+      - name: 上传文件到远程服务器
+        uses: zbc/Upload-File-Action@v1.0.1
+        env:
+          # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的文件
+          ARGS: "-avzr --delete" 
+          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+          SOURCE: "./vue/"
+          # 服务器域名/IP
+          REMOTE_HOST: 101.200.179.180
+          # 服务器默认用户名为root
+          REMOTE_USER: "root"
+          # 目标目录
+          TARGET: '/home/zbc/dist'
+          # 排除目录
+          EXCLUDE: "/node_modules/"
