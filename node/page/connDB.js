@@ -6,7 +6,7 @@ class DBPool {
 			host: '101.200.179.180', //数据库服务器的地址
 			port: 3306, //端口号
 			user: 'ceshi001', //连接数据库的用户名
-			password: 'pM138!@#', //连接数据库的密码
+			password: '', //连接数据库的密码
 			database: 'nodezbc', //数据库名
 			connectionLimit: 10, //用于指定连接池中最大的链接数，默认属性值为10.
 			multipleStatements: false, //是否允许执行多条sql语句，默认值为false
