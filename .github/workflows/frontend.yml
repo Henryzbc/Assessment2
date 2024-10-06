@@ -8,18 +8,18 @@ on:
 jobs:
   # 任务名称
   build:
-    # runs-on 指定job任务运行所需要的虚拟机环境（必填）
-    runs-on: ubuntu-latest
+    # runs-on 指定job任务运行所需要的虚拟机环境（必填） self-hosted, linux  ubuntu-latest
+    runs-on: self-hosted, linux
     # 任务步骤
     steps:
       # 获取源码
       - name: 迁出代码
         # 使用action库  actions/checkout获取源码
-        uses: actions/checkout@main
+        uses: actions/checkout@v4
       # 安装node
       - name: 安装node.js
         # 使用action库 actions/setup-node 安装node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 12.18.4
       # 安装依赖
@@ -30,7 +30,7 @@ jobs:
         run: npm run build
       # 上传打包文件到远程服务器
       - name: 上传文件到远程服务器
-        uses: Henryzbc/Assessment2
+        uses: Henryzbc/Assessment2@main
         env:
           # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
