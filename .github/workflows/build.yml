@@ -26,8 +26,8 @@ jobs:
       # 安装依赖
       - name: npm install
         run: npm install
-        #working-directory: "../working"
+        #working-directory: "../vue"
       # 打包
       - name: npm run build
         run: npm run build
-        #working-directory: "../working"
+        #working-directory: "../vue"
