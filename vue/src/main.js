@@ -11,7 +11,6 @@ import './styles/common.scss';
 
 import App from './App'
 import router from './router/index'
-import store from './store';
 
 import '../static/js/jquery.min.js'
 
@@ -32,7 +31,6 @@ new Vue({
   el: '#app',
   $,
   router,
-  store,
   components: { App },
   template: '<App/>'
 })

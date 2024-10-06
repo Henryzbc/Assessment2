@@ -127,7 +127,6 @@ export default {
       this.$refs["register"].validate((valid) => {
         if (valid) {
           let param = { ...this.registerList };
-          // param.password = md5(param.password);
           register(param).then((e) => {
             this.$message({
               message: "success！",
@@ -135,7 +134,7 @@ export default {
             });
             this.back();
           });
-          this.$refs.register.resetFields(); //清空所有表单项
+          this.$refs.register.resetFields(); 
         } else {
           return false;
         }
