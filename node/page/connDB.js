@@ -16,13 +16,13 @@ class DBPool {
 	query(sql, params, callBack) {
 		this.pool.getConnection((err, connection) => {
 			if (err) {
-				console.log("数据库连接失败");
+				console.log("error");
 				throw err;
 			}
 			connection.query(sql, params, (err, results, fields) => {
 				connection.release();
 				if (err) {
-					console.log("数据库操作失败");
+					console.log("error");
 					throw err;
 				}
 				callBack && callBack({ results, fields });
@@ -35,19 +35,19 @@ class DBPool {
 		return new Promise((resolve, reject) => {
 			this.pool.getConnection((err, connection) => {
 				if (err) {
-					console.log("数据库连接失败");
+					console.log("error");
 					reject(err);
 					return;
 				}
-				console.log("数据库连接成功");
+				console.log("success");
 				connection.query(sql, params, (err, results, fields) => {
 					connection.release(); 
 					if (err) {
-						console.log("数据库操作失败");
+						console.log("error");
 						reject(err);
 						return;
 					}
-					console.log("数据库操作成功");
+					console.log("success");
 					resolve({
 						results,
 						fields,
