@@ -1,4 +1,4 @@
-name: frontend.yml
+name: build.yml
 # 触发脚本的条件，main分支push代码的时候
 on:
   push:
