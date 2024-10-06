@@ -1,5 +1,5 @@
 name: frontend.yml
-# 触发脚本的条件，develop分支push代码的时候
+# 触发脚本的条件，main分支push代码的时候
 on:
   push:
     branches:
@@ -30,7 +30,7 @@ jobs:
         run: npm run build
       # 上传打包文件到远程服务器
       - name: 上传文件到远程服务器
-        uses: Henryzbc/Assessment2@V1.0.0
+        uses: Henryzbc/Assessment2@main
         env:
           # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
