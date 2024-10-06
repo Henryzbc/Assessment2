@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <!-- 其他页 -->
     <el-container v-if="$route.meta.keepAlive">
       <el-aside width="240px" class="aside">
-        <!-- 侧边栏 -->
         <logo></logo>
         <sidebar></sidebar>
       </el-aside>
       <el-container>
         <el-header style="padding: 0px; height: 50px"> 
           <keep-alive>
-            <!-- 导航栏 -->
             <top></top>
           </keep-alive>
         </el-header>
@@ -21,7 +18,6 @@
         </el-main>
       </el-container>
     </el-container>
-    <!-- 登录页/注册页 -->
     <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
