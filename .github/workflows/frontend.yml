@@ -15,11 +15,11 @@ jobs:
       # 获取源码
       - name: 迁出代码
         # 使用action库  actions/checkout获取源码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       # 安装node
       - name: 安装node.js
         # 使用action库 actions/setup-node 安装node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v1
         with:
           node-version: 12.18.4
       # 安装依赖
@@ -30,7 +30,7 @@ jobs:
         run: npm run build
       # 上传打包文件到远程服务器
       - name: 上传文件到远程服务器
-        uses: Henryzbc/Assessment2@main
+        uses: Henryzbc/Assessment2@1.0.0
         env:
           # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
