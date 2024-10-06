@@ -9,7 +9,7 @@ jobs:
   # 任务名称
   build:
     # runs-on 指定job任务运行所需要的虚拟机环境（必填） self-hosted, linux  ubuntu-latest
-    runs-on: self-hosted, linux
+    runs-on: ubuntu-latest
     # 任务步骤
     steps:
       # 获取源码
