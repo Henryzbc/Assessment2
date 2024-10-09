@@ -2,7 +2,6 @@ var app = require("express").Router();
 const DBPool = require('./connDB.js')
 
 
-//登录
 app.get("/api/user/login", (req, res) => {
 	let param = req.query
 	console.log(param);
@@ -12,12 +11,12 @@ app.get("/api/user/login", (req, res) => {
 		if (!result) {
 			res.send({
 				code: 500,
-				msg: '用户名不存在！'
+				msg: 'no user！'
 			});
 		} else if (result.password != param.password) {
 			res.send({
 				code: 500,
-				msg: '密码输入有误！'
+				msg: 'password error!'
 			});
 		} else {
 			res.send({
@@ -28,27 +27,24 @@ app.get("/api/user/login", (req, res) => {
 		}
 	})
 });
-//注册
 app.post('/api/user/register', (req, res) => {
 	let param = req.body
 	var addSql = 'INSERT INTO `user_info`(`loginName`,`password`,`role`,`id`) VALUES(?,?,?,?)';
 	var addSqlParams = [ param.loginName, param.password, '', new Date().getTime()];
 	DBPool.query(addSql, addSqlParams, (results) => {
-		res.send('注册成功');
+		res.send('success');
 	})
 });
-//查询用户列表
 app.get("/api/user/userList", (req, res) => {
 	DBPool.query('SELECT * from `user_info`', [], (results) => {
 		let result = results.results
 		res.send(result);
 	})
 });
-// 修改用户信息
 app.post('/api/user/userUpdate', (req, res) => {
 	let param = req.body
 	DBPool.query('UPDATE user_info SET password = ? WHERE loginName = ?', [param.password, param.loginName], (results) => {
-		res.send("修改数据成功！！")
+		res.send("success")
 	})
 });
 module.exports = app;
